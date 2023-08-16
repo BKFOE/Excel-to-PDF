@@ -18,9 +18,16 @@ for filepath in filepaths:
     print(new_filename)
     """
     filename = Path(filepath).stem
-    invoice_nr = filename.split("-")[0]
+    invoice_no, date = filename.split("-")
+    # invoice_no = filename.split("-")[0]
+    # date = filename.split("-")[1]
 
     # Set the header
     pdf.set_font(family="Times", style="B", size=16)
-    pdf.cell(w=50, h=8, txt=f"Invoice nr. {invoice_nr}")
+    pdf.cell(w=50, h=8, txt=f"Invoice no. {invoice_no}", ln=1)
+
+    # Set the date header
+    pdf.set_font(family="Times", style="B", size=16)
+    pdf.cell(w=50, h=8, txt=f"Date: {date}")
+
     pdf.output(f"PDF/ {filename}.pdf")
